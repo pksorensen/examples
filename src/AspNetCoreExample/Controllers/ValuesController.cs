@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -17,9 +18,9 @@ namespace WebApplication1.Controllers
 
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<string> Get([FromServices] MyCoolOptions myCoolOptions)
         {
-            return _values;
+            return new List<string> { myCoolOptions.Value }.Concat( _values);
         }
 
         // GET api/values/5
